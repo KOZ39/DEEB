@@ -15,5 +15,8 @@ Bot Permissions
 Privileged Gateway Intents
 - Message Content Intent
 
+## Preview
+![preview](preview.gif)
+
 ## License
 [MIT](https://github.com/KOZ39/DEEB/blob/master/LICENSE)
