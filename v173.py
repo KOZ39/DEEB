@@ -22,9 +22,10 @@ async def on_message(message: discord.Message) -> None:
 
     if (m := re.match(EMOJI_REGEX, message.content)):
         try:
+            color = message.author.color if message.author.color != discord.Colour.default() else 0xffffff
             ext = "gif" if m.group(1) else "png"
 
-            embed = discord.Embed(color=message.author.color)
+            embed = discord.Embed(color=color)
             embed.set_author(name=message.author.display_name, icon_url=message.author.avatar_url)
             embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}.{ext}")
 
