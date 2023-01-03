@@ -31,6 +31,7 @@ async def on_message(message: discord.Message) -> None:
             embed = discord.Embed(color=color)
             embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar)
             embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}.{ext}")
+            #embed.set_footer(text=m.group(2))
 
             await message.delete()
             await message.channel.send(embed=embed, reference=message.reference, mention_author=False)
@@ -39,4 +40,4 @@ async def on_message(message: discord.Message) -> None:
             pass
 
 
-client.run('<DISCORD_client_TOKEN>')
+client.run('<DISCORD_CLIENT_TOKEN>')
