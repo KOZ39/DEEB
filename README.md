@@ -5,7 +5,7 @@
 - Python 3.8+
 - discord.py 1.7.3 or 2.0.0+
 
-## Discord Developer Portal
+## [Discord Developer Portal](https://discord.com/developers/applications)
 Bot Permissions
 - Send Messages
 - Send Messages in Threads (Option)

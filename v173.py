@@ -1,11 +1,9 @@
-import os
 import re
 import traceback
 
 import discord
 
-
-EMOJI_REGEX = r"^<(a)?:(.+):([0-9]{15,21})>$"
+EMOJI_REGEX = r"^<(a)?:(.+?):([0-9]{15,21})>$"
 
 client = discord.Client()
 
@@ -17,7 +15,7 @@ async def on_ready() -> None:
 
 @client.event
 async def on_message(message: discord.Message) -> None:
-    if not message.guild:
+    if not message.guild and message.author.bot:
         return
 
     if (m := re.match(EMOJI_REGEX, message.content)):
