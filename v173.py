@@ -15,7 +15,7 @@ async def on_ready() -> None:
 
 @client.event
 async def on_message(message: discord.Message) -> None:
-    if not message.guild and message.author.bot:
+    if not message.guild or message.author.bot:
         return
 
     if (m := re.match(EMOJI_REGEX, message.content)):
