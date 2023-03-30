@@ -3,7 +3,7 @@
 
 ## Requirements
 - Python 3.8+
-- discord.py 1.7.3 or 2.0.0+
+- discord.py 2.0+
 
 ## [Discord Developer Portal](https://discord.com/developers/applications)
 Bot Permissions
