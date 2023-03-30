@@ -1,9 +1,23 @@
 import re
-import traceback
+#import traceback
 
 import discord
 
-EMOJI_REGEX = r"^<(a)?:(.+?):([0-9]{15,21})>$"
+SINGLE_EMOJI_REGEX = re.compile(
+    r"""
+    ^          # Start of string
+    (?!<.*<)   # Negative lookahead to ensure there is not more than one '<' at the beginning
+    <          # Emoji opening delimiter
+    (a)?       # Optional 'a' for animated emojis
+    :          # Colon delimiter
+    (.+?)      # Emoji name
+    :          # Colon delimiter
+    ([0-9]{15,21})  # Emoji ID
+    >          # Emoji closing delimiter
+    $          # End of string
+    """,
+    re.VERBOSE,
+)
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -21,7 +35,7 @@ async def on_message(message: discord.Message) -> None:
     if not message.guild or message.author.bot:
         return
 
-    if (m := re.match(EMOJI_REGEX, message.content)):
+    if (m := SINGLE_EMOJI_REGEX.match(message.content)):
         try:
             color = message.author.color if message.author.color != discord.Colour.default() else 0xffffff
             ext = "gif" if m.group(1) else "png"
