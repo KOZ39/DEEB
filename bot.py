@@ -33,16 +33,16 @@ async def on_ready() -> None:
 @client.event
 async def on_message(message: discord.Message) -> None:
     if not message.guild or message.author.bot:
-        return
+        return None
 
     if (m := SINGLE_EMOJI_REGEX.match(message.content)):
         try:
             color = message.author.color if message.author.color != discord.Colour.default() else 0xffffff
-            ext = "gif" if m.group(1) else "png"
+            ext = ".gif" if m.group(1) else ".png"
 
             embed = discord.Embed(color=color)
             embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar)
-            embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}.{ext}")
+            embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}{ext}")
             #embed.set_footer(text=m.group(2))
 
             await message.delete()
