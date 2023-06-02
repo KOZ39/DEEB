@@ -33,7 +33,7 @@ async def on_ready() -> None:
 @client.event
 async def on_message(message: discord.Message) -> None:
     if not message.guild or message.author.bot:
-        return None
+        return
 
     if (m := SINGLE_EMOJI_REGEX.match(message.content)):
         try:

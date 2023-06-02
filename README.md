@@ -2,8 +2,8 @@
 > Discord Emoji Enlarger Bot
 
 ## Requirements
-- Python 3.8+
-- discord.py 2.0+
+- [Python 3.8+](https://python.org)
+- [discord.py 2.0+](https://github.com/Rapptz/discord.py)
 
 ## [Discord Developer Portal](https://discord.com/developers/applications)
 Bot Permissions
