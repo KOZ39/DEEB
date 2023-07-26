@@ -12,6 +12,14 @@
 pip install -r requirements.txt
 ```
 
+## Usage
+Copy the `.env.example` file to create an `.env` file and put in the bot token you want to use.
+
+```
+python bot.py
+```
+
+
 ## [Discord Developer Portal](https://discord.com/developers/applications)
 Bot Permissions
 - Send Messages
