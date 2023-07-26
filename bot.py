@@ -1,7 +1,11 @@
+import os
 import re
-#import traceback
 
 import discord
+from discord.ext import tasks
+from dotenv import load_dotenv
+
+load_dotenv()
 
 SINGLE_EMOJI_REGEX = re.compile(
     r"""
@@ -25,8 +29,14 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 
+@tasks.loop(minutes=1.0)
+async def change_status():
+    await client.change_presence(activity=discord.Game(name=f"{len(client.guilds)}개의 서버와 함께"))
+
+
 @client.event
 async def on_ready() -> None:
+    change_status.start()
     print(f"{client.user} Online!")
 
 
@@ -43,13 +53,12 @@ async def on_message(message: discord.Message) -> None:
             embed.color = message.author.color if message.author.color != discord.Colour.default() else discord.Colour(0xffffff)
             embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar)
             embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}{ext}")
-            #embed.set_footer(text=m.group(2))
 
             await message.delete()
             await message.channel.send(embed=embed, reference=message.reference, mention_author=False)
-        except:
-            #traceback.print_exc()
-            pass
+        except Exception as e:
+            if not isinstance(e, discord.Forbidden):
+                print(f"{e.__class__.__name__}: {e}")
 
 
-client.run('<DISCORD_CLIENT_TOKEN>')
+client.run(os.getenv('TOKEN'))
