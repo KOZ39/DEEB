@@ -3,7 +3,14 @@
 
 ## Requirements
 - [Python 3.8+](https://python.org)
-- [discord.py 2.0+](https://github.com/Rapptz/discord.py)
+
+## Dependencies
+- [discord.py 2.3+](https://github.com/Rapptz/discord.py)
+- [python-dotenv 1.0+](https://github.com/theskumar/python-dotenv)
+
+```
+pip install -r requirements.txt
+```
 
 ## [Discord Developer Portal](https://discord.com/developers/applications)
 Bot Permissions
