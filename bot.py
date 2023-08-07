@@ -12,7 +12,7 @@ SINGLE_EMOJI_REGEX = re.compile(
     ^               # Start of string
     (?!<.*<)        # Negative lookahead to ensure there is not more than one '<' at the beginning
     <               # Emoji opening delimiter
-    (a)?            # Optional 'a' for animated emojis
+    (a)?            # Optional 'a' for animated emoji
     :               # Colon delimiter
     (.+?)           # Emoji name
     :               # Colon delimiter
@@ -30,7 +30,7 @@ client = discord.Client(intents=intents)
 
 
 @tasks.loop(minutes=1.0)
-async def change_status():
+async def change_status() -> None:
     await client.change_presence(activity=discord.Game(name=f"{len(client.guilds)}개의 서버와 함께"))
 
 
@@ -49,8 +49,9 @@ async def on_message(message: discord.Message) -> None:
         try:
             ext = ".gif" if m.group(1) else ".png"
 
-            embed = discord.Embed()
-            embed.color = message.author.color if message.author.color != discord.Colour.default() else discord.Colour(0xffffff)
+            embed = discord.Embed(
+                color = message.author.color if message.author.color != discord.Colour.default() else discord.Colour.greyple()
+            )
             embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar)
             embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}{ext}")
 
