@@ -46,20 +46,20 @@ async def on_message(message: discord.Message) -> None:
         return
 
     if (m := SINGLE_EMOJI_REGEX.match(message.content)):
+        embed = discord.Embed(
+            color = message.author.color if message.author.color != discord.Colour.default() else discord.Colour.greyple()
+        )
+        embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar)
+        ext = ".gif" if m.group(1) else ".png"
+        embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}{ext}")
+
         try:
-            ext = ".gif" if m.group(1) else ".png"
-
-            embed = discord.Embed(
-                color = message.author.color if message.author.color != discord.Colour.default() else discord.Colour.greyple()
-            )
-            embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar)
-            embed.set_image(url=f"https://cdn.discordapp.com/emojis/{m.group(3)}{ext}")
-
             await message.delete()
             await message.channel.send(embed=embed, reference=message.reference, mention_author=False)
+        except discord.Forbidden:
+            pass
         except Exception as e:
-            if not isinstance(e, discord.Forbidden):
-                print(f"{e.__class__.__name__}: {e}")
+            print(f"{e.__class__.__name__}: {e}")
 
 
 client.run(os.getenv('TOKEN'))
