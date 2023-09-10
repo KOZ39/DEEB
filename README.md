@@ -9,14 +9,14 @@
 - [python-dotenv 1.0+](https://github.com/theskumar/python-dotenv)
 
 ```
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 ## Usage
-Copy the `.env.example` file to create an `.env` file and put in the bot token you want to use.
+Rename `.env.example` to `.env` and enter the bot token you want to use.
 
 ```
-python bot.py
+$ python bot.py
 ```
 
 
