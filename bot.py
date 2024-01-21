@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 
@@ -6,6 +7,14 @@ from discord.ext import tasks
 from dotenv import load_dotenv
 
 load_dotenv()
+
+log = logging.getLogger(__name__)
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
+
 
 SINGLE_EMOJI_REGEX = re.compile(
     r"""
@@ -23,11 +32,6 @@ SINGLE_EMOJI_REGEX = re.compile(
     re.VERBOSE,
 )
 
-intents = discord.Intents.default()
-intents.message_content = True
-
-client = discord.Client(intents=intents)
-
 
 @tasks.loop(minutes=1.0)
 async def change_status() -> None:
@@ -37,7 +41,7 @@ async def change_status() -> None:
 @client.event
 async def on_ready() -> None:
     change_status.start()
-    print(f"{client.user} Online!")
+    print(f"Logged in as {client.user}")
 
 
 @client.event
@@ -60,7 +64,7 @@ async def on_message(message: discord.Message) -> None:
         except discord.Forbidden:
             pass
         except Exception as e:
-            print(f"{e.__class__.__name__}: {e}")
+            log.exception("%s", e)
 
 
 client.run(os.getenv('TOKEN'))
