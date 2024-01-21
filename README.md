@@ -23,7 +23,7 @@ $ python bot.py
 ## [Discord Developer Portal](https://discord.com/developers/applications)
 Bot Permissions
 - Send Messages
-- Send Messages in Threads (Option)
+- Send Messages in Threads (Optional)
 - Manage Messages
 - Embed Links
 
