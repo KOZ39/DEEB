@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-log = logging.getLogger(__name__)
-
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -64,7 +62,7 @@ async def on_message(message: discord.Message) -> None:
         except discord.Forbidden:
             pass
         except Exception as e:
-            log.exception("%s", e)
+            logging.exception(e)
 
 
 client.run(os.getenv('TOKEN'))
