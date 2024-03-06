@@ -1,6 +1,17 @@
 # DEEB
 > Discord Emoji Enlarger Bot
 
+## [Discord Developer Portal](https://discord.com/developers/applications)
+**Privileged Gateway Intents**
+- MESSAGE CONTENT INTENT
+
+**Bot Permissions**
+- Read Messages/View Channels
+- Send Messages
+- Send Messages in Threads (Optional)
+- Manage Messages
+- Embed Links
+
 ## Requirements
 - Python 3.10+
 
@@ -19,17 +30,6 @@ python bot.py
 
 ## Preview
 ![preview](preview.gif)
-
-## [Discord Developer Portal](https://discord.com/developers/applications)
-**Privileged Gateway Intents**
-- MESSAGE CONTENT INTENT
-
-**Bot Permissions**
-- Read Messages/View Channels
-- Send Messages
-- Send Messages in Threads (Optional)
-- Manage Messages
-- Embed Links
 
 ## License
 [MIT](https://github.com/KOZ39/DEEB/blob/master/LICENSE)
