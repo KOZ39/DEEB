@@ -13,7 +13,6 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
-
 SINGLE_EMOJI_REGEX = re.compile(
     r"""
     ^               # Start of string
@@ -32,18 +31,18 @@ SINGLE_EMOJI_REGEX = re.compile(
 
 
 @tasks.loop(minutes=1.0)
-async def change_status() -> None:
+async def change_status():
     await client.change_presence(activity=discord.Game(name=f"{len(client.guilds)}개의 서버와 함께"))
 
 
 @client.event
-async def on_ready() -> None:
+async def on_ready():
     change_status.start()
     print(f"Logged in as {client.user}")
 
 
 @client.event
-async def on_message(message: discord.Message) -> None:
+async def on_message(message: discord.Message):
     if not message.guild or message.author.bot:
         return
 
